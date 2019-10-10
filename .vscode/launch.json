@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "PowerShell: Launch Current File",
             "type": "PowerShell",
@@ -11,11 +12,7 @@
             "script": "${file}",
             "cwd": "${file}",
             "args": [
-                "-ComputerName", "hv2",
-                "-DrvPath", "z:\\HP Color LaserJet Pro M454dn\\HP_CLJM453-M454_V4\\",
-                "-DrvInf", "hpshC42A4_x64.inf",
-                "-DrvName", "HP Color Laserjet Pro M454dn -MI3094",
-                "-PrtIp", "134.154.240.7"
+                "-ComputerName", "hv2"
              ]
         }
     ]

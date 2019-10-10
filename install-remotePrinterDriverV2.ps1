@@ -2,21 +2,26 @@
 #$ComputerName = "comp1", "comp2", "comp3"
 # Now, it is a cmdlet-bound string which could be a single computer or a list...
 
-#[cmdletbinding()]
-#Param(
-#    [String]$ComputerName,
+[cmdletbinding()]
+Param(
+	[Parameter(ValueFromPipeline=$True,
+			  Mandatory=$True)]
+			  [Alias('CN','MachineName','Name')]
+	[String]$ComputerName
 #    [String]$DrvPath,
 #    [String]$DrvInf,
 #    [String]$DrvName, 
 #    [String]$PrtIp
-#	)
-#
-$ComputerName="win7b-11"
-$DrvPath="z:\\HP Color LaserJet Pro M454dn\\HP_CLJM453-M454_V4\\"
+	)
+
+BEGIN {}
+
+PROCESS {
+#$ComputerName="win7b-11"
+$DrvPath="z://Drivers//HP Color LaserJet Pro M454dn//HP_CLJM453-M454_V4//"
 $DrvInf="hpshC42A4_x64.inf"
 $DrvName="HP Color Laserjet Pro M454dn -MI3094"
 $PrtIp="134.154.240.7"
-
 foreach ($uut in $ComputerName) {
     if ($DrvPath.length -eq 0 -or $DrvInf.length -eq 0 -or $DrvName.length -eq 0 -or $PrtIp.length -eq 0) {
 	      write-error "Insufficent number of parameters"
@@ -25,8 +30,8 @@ foreach ($uut in $ComputerName) {
 	# Now, copy the files to the remote system....
 	Copy-Item -Path "$DrvPath" -Destination "\\$uut\c$\" -Recurse
 
-	foreach ($uut in $ComputerName) {Copy-Item -Path "$DrvPath" -Destination "\\$uut\c$\" -Recurse}
-	
+#	foreach ($uut in $ComputerName) {Copy-Item -Path "$DrvPath" -Destination "\\$uut\c$\" -Recurse}
+#	
     try {
 		Invoke-Command -ComputerName $uut -ScriptBlock { 
 		    if (Test-Path $DrvPath+"\\"+$DrvInf -eq $true) {
@@ -70,4 +75,6 @@ foreach ($uut in $ComputerName) {
 	Catch {
 		write-host "Whoops!"
 	}
-}
+} #foreach
+} # PROCESS
+END {}
