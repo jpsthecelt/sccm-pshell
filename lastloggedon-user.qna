@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FixletDebuggerFile>
+	<SingleClauseView>(name of it &amp; "-" &amp; last logon of it as string) of domain users (names of local users of active directory) as string</SingleClauseView>
+</FixletDebuggerFile>

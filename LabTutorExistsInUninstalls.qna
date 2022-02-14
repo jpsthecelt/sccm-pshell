@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FixletDebuggerFile>
+	<SingleClauseView>exists elements whose (it contains "LabTutor") of set of (value "DisplayName" of it as string) of keys whose ((value "UninstallString" of it as string as lowercase contains "msiexec") )  of key "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of registry</SingleClauseView>
+</FixletDebuggerFile>

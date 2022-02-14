@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FixletDebuggerFile>
+	<SingleClauseView>(value "DisplayName" of it as string, value "UninstallString" of it) of keys whose ((value "UninstallString" of it as string as lowercase contains "msiexec") and (value "DisplayName" of it as string contains "Zoom" ))  of key "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of registry</SingleClauseView>
+</FixletDebuggerFile>

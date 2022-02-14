@@ -1,0 +1,1 @@
+add-computer -computername localhost -domainname ad.csueastbay.edu -credential AD\wz3264 -restart -force

@@ -1,0 +1,1 @@
+get-aduser -filter '(HomeDrive -ne "$null")' -Property Name,SamAccountName,HomeDirectory,HomeDrive,DisplayName,DistinguishedName | attrib /s /d {$_.HomeDrive}

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BES xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='BES.xsd'>
+    <Analysis>
+        <Title>Printer Audit - Windows</Title>
+        <Description><![CDATA[Learn more about this analysis online:  <a href='https://bigfix.me/cdb/analysis/2994742'>https://bigfix.me/cdb/analysis/2994742</a><br /><br /><P>This Analysis provides information about Windows Printers.</P>
+<P>&nbsp;</P>
+<P>Related:</P>
+<P><A href="https://www.ibm.com/developerworks/community/forums/html/topic?id=d0fa8b7c-9d26-420c-b82b-fbe307f3f4b1&amp;ps=100"><FONT color=#000080>https://www.ibm.com/developerworks/community/forums/html/topic?id=d0fa8b7c-9d26-420c-b82b-fbe307f3f4b1&amp;ps=100</FONT></A></P>
+<P>&nbsp;</P>
+<P>References:</P>
+<P><A href="http://www.stigviewer.com/stig/windows_7/2014-04-02/finding/V-21963">http://www.stigviewer.com/stig/windows_7/2014-04-02/finding/V-21963</A></P>
+<P><A href="http://www.scaprepo.com/view.jsp?id=CCE-18881-3">http://www.scaprepo.com/view.jsp?id=CCE-18881-3</A></P>
+<P>&nbsp;</P>]]></Description>        
+        <Relevance>windows of operating system</Relevance>
+                    
+            <MIMEField>
+                <Name>x-fixlet-modification-time</Name>
+                <Value>Fri, 17 Oct 2014 14:48:24 +0000</Value>
+            </MIMEField>
+        <MIMEField>
+            <Name>bigfixme-added-time</Name>
+            <Value>Fri, 17 Oct 2014 07:54:17 GMT</Value>
+        </MIMEField>
+        <MIMEField>
+            <Name>bigfixme-modification-time</Name>
+            <Value>Fri, 17 Oct 2014 07:54:17 GMT</Value>
+        </MIMEField>
+        <MIMEField>
+            <Name>bigfixme-keywords</Name>
+            <Value></Value>
+        </MIMEField>
+        <MIMEField>
+            <Name>bigfixme-ID</Name>
+            <Value>2994742</Value>
+        </MIMEField>
+                <MIMEField>
+                    <Name>bigfixme-versions-ids</Name>
+                    <Value>2994741</Value>
+                </MIMEField>
+
+        <Domain>BESC</Domain> 
+        <Property Name="# Local Printers" ID="1" EvaluationPeriod="PT12H">number of keys whose (value "Port" of it as string contains "LPT" OR value "Port" of it as string contains "DOT4" OR value "Port" of it as string contains "USB") of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers" of registry as string</Property>
+        <Property Name="# IP Address Network Printers" ID="2" EvaluationPeriod="PT12H">number of keys whose (4 = number of substrings separated by "." of (value "Port" of it as string)) of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers" of registry as string</Property>
+        <Property Name="Printers" ID="3" EvaluationPeriod="PT12H">concatenation ", " of unique values of names whose(it as string does not contain "Microsoft" AND it as string does not contain "PDF" AND it as string as lowercase does not contain "fax" AND it as string does not contain "OneNote" AND it as string does not contain "PaperPort") of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers" of registry</Property>
+        <Property Name="Printer Models" ID="5" EvaluationPeriod="PT12H">concatenation ", " of unique values of (values "Model" whose(it as string does not contain "Microsoft" AND it as string does not contain "PDF" AND it as string as lowercase does not contain "fax" AND it as string does not contain "OneNote" AND it as string does not contain "PaperPort") of keys of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers" of registry as string)</Property>
+        <Property Name="Default Printers" ID="6" EvaluationPeriod="PT12H">concatenation ", " of (unique values whose(it as string does not contain "Microsoft" AND it as string does not contain "PDF" AND it as string as lowercase does not contain "fax" AND it as string does not contain "OneNote" AND it as string does not contain "PaperPort") of preceding texts of firsts "," of ((values "Device" of keys "windows" whose ( exists values "Device" of it )  of keys "Software\Microsoft\Windows NT\CurrentVersion" of keys of key "HKEY_USERS" of registry) as string) as string)</Property>
+        <Property Name="Printer Info from WMI" ID="7" EvaluationPeriod="PT12H">selects "Name,Caption,DeviceID,DriverName,PortName from win32_printer" of wmi</Property>
+        <Property Name="Printer Names from WMI (filtered)" ID="8" EvaluationPeriod="PT12H">unique values whose(not exists (it as lowercase) whose(it = "fax" OR it contains "webex "  OR it contains " converter" OR it contains " virtual printer"  OR it contains " publisher imagesetter" OR it contains " onenote " OR it contains "microsoft " OR it contains "pdf")) of string values of selects "Name,Caption,DeviceID,DriverName from win32_printer" of wmi</Property>
+        <Property Name="Printer Info from ActiveDevices" ID="9" EvaluationPeriod="PT12H"><![CDATA[(friendly name of it | "<noFriName>", description of it | "<noDesc>", manufacturer of it | "<noManuf>", location information of it | "<noLocInfo>" ) of  active devices whose(class of it = "PrintQueue" OR class of it = "Printer")]]></Property>
+        <Property Name="DoNotInstallCompatibleDriverFromWindowsUpdate (win7+)" ID="10" EvaluationPeriod="PT12H">values "DoNotInstallCompatibleDriverFromWindowsUpdate" of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print" of native registry</Property>
+        <Property Name="PrinterNames of ControlSet (registry)" ID="11" EvaluationPeriod="PT12H">unique values of names of keys of keys "Control\Print\Printers" of keys whose(name of it contains "ControlSet") of keys "HKEY_LOCAL_MACHINE\SYSTEM" of native registry</Property>
+        <Property Name="PrinterDrivers of ControlSet (registry)" ID="12" EvaluationPeriod="PT12H">unique values of names of keys of keys whose(name of it starts with "Version-") of keys "Drivers" of keys of keys "Control\Print\Environments" of keys whose(name of it contains "ControlSet") of keys "HKEY_LOCAL_MACHINE\SYSTEM" of native registry</Property>
+        <Property Name="Names of (PrinterDrivers &amp; PrinterNames) combined&amp;filtered" ID="13" EvaluationPeriod="PT12H">unique values whose(not exists (it as lowercase) whose(it = "fax" OR it contains "root print " OR it contains "remote desktop " OR it contains "webex " OR it contains " converter" OR it contains " virtual printer" OR it contains " publisher imagesetter" OR it contains " onenote " OR it contains "microsoft " OR it contains "pdf")) of ( (string values of selects "Name,Caption,DeviceID,DriverName from win32_printer" of wmi);( names of keys of keys "Control\Print\Printers" of keys whose(name of it contains "ControlSet") of keys "HKEY_LOCAL_MACHINE\SYSTEM" of native registry );( names of keys of keys whose(name of it starts with "Version-") of keys "Drivers" of keys of keys "Control\Print\Environments" of keys whose(name of it contains "ControlSet") of keys "HKEY_LOCAL_MACHINE\SYSTEM" of native registry );(values "Model" of keys of keys of key "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers" of registry as string);(( if (exists friendly name of it) then (friendly names of it) else (descriptions of it)  ) of active devices whose(class of it = "PrintQueue" OR class of it = "Printer")) )</Property>
+    </Analysis>
+</BES>

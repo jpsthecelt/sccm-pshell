@@ -33,8 +33,7 @@ PROCESS {
     #	foreach ($uut in $ComputerName) {Copy-Item -Path "$DrvPath" -Destination "\\$uut\c$\" -Recurse}
     	
         try {
-			$uutPath=('C:\\'+(split-path $DrvPath -leaf))
-    		Invoke-Command -ComputerName $uut -ScriptBlock { 
+	 			$uutPath=('C:\\'+(split-path $DrvPath -leaf))
     		    if ((Test-Path ($uutPath+'\\'+$DrvInf)) -eq $True) {
     		        $IP = $PrtIp
     		        $Driver = $DrvName
@@ -45,7 +44,7 @@ PROCESS {
     				$driverobj.Name="$Driver"
     				$driverobj.DriverPath = $uutPath
     				# "C:\Driver File"
-    				$driverobj.Infname = $uutPath+$DrvInf
+    				$driverobj.Infname = $uutPath+'\\'+$DrvInf
     				# "C:\Driver File\Driver.inf"
     		        $newdriver = $driverclass.AddPrinterDriver($driverobj)
     		        $newdriver = $driverclass.Put()
@@ -67,13 +66,11 @@ PROCESS {
     		        $Printer.PortName = "$IP"
     		        $Port.Description = "$IP"
     		        $Printer.Put()
-    		        }
-    	        }
-    			else {
-    				Write-Output "File Does not exsist on $env:computername"}
-    				} 
+					}
+			}
     	Catch {
-    		write-host "Whoops!"
+			write-host "Whoops!"
+			write-host $_
 		}
 	}
 } # Process
