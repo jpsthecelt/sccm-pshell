@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Note: Previously, this script assumed that $ComputerName was a list, like:
 #$ComputerName = "comp1", "comp2", "comp3"
 # Now, it is a cmdlet-bound string which could be a single computer or a list...
@@ -72,7 +71,6 @@ foreach ($uut in $ComputerName) {
 																																																																																																																																	                write-host "Whoops!"
 																																																																																																																																			        }
 																																																																																																																																				}
-=======
 $comp = "hv2"
 $DrvFrmPath="z://Drivers//HP Color LaserJet Pro M454dn//HP_CLJM453-M454_V4//"
 $DrvInf="hpshC42A4_x64.inf"
@@ -124,4 +122,3 @@ try {
     write-error "Install-error"
     write-error $_
 }
->>>>>>> 25e9759f2f969543fd15c321795fb56785428c8e
